@@ -21,7 +21,7 @@ class App extends StatelessWidget {
       child: Builder(
         builder: (context) {
           return MaterialApp(
-            title: dotenv.env['APP_NAME'] ?? 'eco_locator',
+            title: dotenv.maybeGet('APP_NAME') ?? 'eco_locator',
             debugShowCheckedModeBanner: false,
             theme: AppTheme.light,
             darkTheme: AppTheme.dark,
