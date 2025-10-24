@@ -1,3 +1,8 @@
+import 'package:eco_locator/core/design_system/theme_extension/theme_manager.dart';
+import 'package:eco_locator/features/locator/data/datasources/i_recycling_point_datasource.dart';
+import 'package:eco_locator/features/locator/data/datasources/local_recycling_point_data_source.dart';
+import 'package:eco_locator/features/locator/data/repositories/recycling_point_repository.dart';
+import 'package:eco_locator/features/locator/domain/repositories/i_recycling_point_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -12,7 +17,8 @@ void main() async {
   // Set preferred orientations
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
   ]);
 
   // Set system UI overlay style
@@ -25,8 +31,18 @@ void main() async {
     ),
   );
   runApp(
-    Provider(
-      create: (context) => null,
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        Provider<IRecyclingPoingDatasource>(
+          create: (_) => LocalRecyclingPointDatasource(),
+        ),
+        Provider<IRecyclingPointRepository>(
+          create: (context) => RecyclingPoingRepository(
+            context.read<IRecyclingPoingDatasource>(),
+          ),
+        ),
+      ],
       child: const App(),
     ),
   );
