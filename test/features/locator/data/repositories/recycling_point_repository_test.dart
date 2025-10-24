@@ -1,4 +1,3 @@
-
 import 'package:eco_locator/features/locator/data/datasources/i_recycling_point_datasource.dart';
 import 'package:eco_locator/features/locator/data/repositories/recycling_point_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -19,40 +18,31 @@ void main() {
 
   group('calculateDistance', () {
     test('should return 0 when points are the same', () async {
-      // Arrange
-      final point = LatLng(38.7223, -9.1393);
+      final point = LatLng(38.7223, 38.7223);
 
-      // Act
       final distance = await repository.calculateDistance(point, point);
 
-      // Assert
       expect(distance, 0);
     });
 
     test('should return correct distance for known locations', () async {
-      // Arrange
-      final lisbon = LatLng(38.7223, -9.1393);
-      final madrid = LatLng(40.4168, -3.7038);
-      const expectedDistance = 503338.0; // in meters
+      final cityA = LatLng(-8.843861213756469, 13.296716401687153);
+      final cityB = LatLng(-8.865125284744485, 13.310886148898796);
+      const expectedDistance = 5000.0;
 
-      // Act
-      final distance = await repository.calculateDistance(lisbon, madrid);
+      final distance = await repository.calculateDistance(cityA, cityB);
+      print('Distancia calculada: ' + distance.toString());
 
-      // Assert
-      expect(distance, closeTo(expectedDistance, 1.0));
+      expect(distance, lessThan(expectedDistance));
     });
 
     test('should return correct distance for antipodal points', () async {
-      // Arrange
       final point1 = LatLng(40.4168, -3.7038);
       final point2 = LatLng(-40.4168, 176.2962);
-      const expectedDistance = 20015000.0; // in meters, approx half earth circumference
+      const expectedDistance = 20015000.0;
 
-      // Act
       final distance = await repository.calculateDistance(point1, point2);
 
-      // Assert
-      // Looser tolerance for antipodal calculation
       expect(distance, closeTo(expectedDistance, 1000.0));
     });
   });

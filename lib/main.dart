@@ -10,18 +10,14 @@ import 'package:provider/provider.dart';
 import 'package:eco_locator/app/app.dart';
 
 void main() async {
-  // Initialize Flutter binding
   WidgetsFlutterBinding.ensureInitialized();
-  // Load environment variables
   await dotenv.load(fileName: ".env");
-  // Set preferred orientations
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
   ]);
 
-  // Set system UI overlay style
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
