@@ -46,6 +46,12 @@ O projeto utiliza Provider como solução de gerenciamento de estado, oferecendo
 - Separação clara de responsabilidades
 - Facilidade de teste
 
+## 📱 Download do APK
+
+Baixe a versão mais recente do aplicativo:
+
+[Download APK v1.0.0](https://github.com/paulinofonsecas/eco_locator/releases/latest) <!-- Atualize este link quando disponibilizar o APK -->
+
 ## 🚀 Como Executar o Projeto
 
 ### Pré-requisitos
@@ -82,12 +88,6 @@ O projeto utiliza Provider como solução de gerenciamento de estado, oferecendo
    ```bash
    flutter run
    ```
-
-## 📱 Download do APK
-
-Baixe a versão mais recente do aplicativo:
-
-[Download APK v1.0.0](https://github.com/paulinofonsecas/eco_locator/releases/latest) <!-- Atualize este link quando disponibilizar o APK -->
 
 ## Development Guidelines
 
